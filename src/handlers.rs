@@ -11,6 +11,7 @@ pub fn configure_routes(cfg: &mut web::ServiceConfig) {
     )
     .service(
         web::scope("/api/v1/crates")
+            .data(web::PayloadConfig::new(1 << 25))
             .service(registry::publish)
             .service(registry::yank)
             .service(registry::unyank)
